@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/AnithaDharaneedharan/form-validation/static/css/main.7c52e7f6.chunk.css",
+    "main.js": "/AnithaDharaneedharan/form-validation/static/js/main.daa2d1cc.chunk.js",
+    "main.js.map": "/AnithaDharaneedharan/form-validation/static/js/main.daa2d1cc.chunk.js.map",
+    "runtime-main.js": "/AnithaDharaneedharan/form-validation/static/js/runtime-main.1d8cc1c7.js",
+    "runtime-main.js.map": "/AnithaDharaneedharan/form-validation/static/js/runtime-main.1d8cc1c7.js.map",
+    "static/js/2.d9748b34.chunk.js": "/AnithaDharaneedharan/form-validation/static/js/2.d9748b34.chunk.js",
+    "static/js/2.d9748b34.chunk.js.map": "/AnithaDharaneedharan/form-validation/static/js/2.d9748b34.chunk.js.map",
+    "index.html": "/AnithaDharaneedharan/form-validation/index.html",
+    "precache-manifest.c9f3a679a6e8447b8c32c22d7f32ed20.js": "/AnithaDharaneedharan/form-validation/precache-manifest.c9f3a679a6e8447b8c32c22d7f32ed20.js",
+    "service-worker.js": "/AnithaDharaneedharan/form-validation/service-worker.js",
+    "static/css/main.7c52e7f6.chunk.css.map": "/AnithaDharaneedharan/form-validation/static/css/main.7c52e7f6.chunk.css.map",
+    "static/js/2.d9748b34.chunk.js.LICENSE.txt": "/AnithaDharaneedharan/form-validation/static/js/2.d9748b34.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1d8cc1c7.js",
+    "static/js/2.d9748b34.chunk.js",
+    "static/css/main.7c52e7f6.chunk.css",
+    "static/js/main.daa2d1cc.chunk.js"
+  ]
+}
