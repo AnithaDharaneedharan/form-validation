@@ -133,7 +133,7 @@ export default class Register extends Component {
           ) : (
             <div className="error_message">
               {" "}
-              Please fill the highlighted fields
+              Please fill the incomplete fields
             </div>
           )}
         </form>

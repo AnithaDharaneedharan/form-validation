@@ -9,6 +9,7 @@
   padding: 10px;
   width: 200px;
   margin: 20px;
+  border-radius: 5px;
 }
 
 label {
@@ -19,8 +20,10 @@ label {
 
 .button-primary {
   background-color: aqua;
-  width: 200px;
+  width: 300px;
   padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
 }
 
 .error {
@@ -29,4 +32,4 @@ label {
 
 .error_message {
   color: red;
-}
+} 
