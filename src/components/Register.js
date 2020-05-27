@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import reactDOM from "react-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
+toast.configure();
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&'*/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -9,11 +12,15 @@ const formValid = (formErrors) => {
   debugger;
   let valid = true;
   Object.values(formErrors).forEach((val) => val.length > 0 && (valid = false));
- // Object.values(rest).forEach(val=> (val === null) && (valid =false ));
   return valid;
 };
 
 export default class Register extends Component {
+  fname = React.createRef();
+  lname = React.createRef();
+  mail = React.createRef();
+  password = React.createRef();
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,43 +34,33 @@ export default class Register extends Component {
         email: "",
         password: "",
       },
+      success: "",
+      errors: "",
     };
   }
 
-  handleChange = (e) => {
+  handleChange = () => {
     debugger;
-    const { name, value } = e.target;
-    let formErrors = this.state.formErrors;
 
-    switch (name) {
-      case "firstName":
-        formErrors.firstName =
-          value !== null && value.length < 3
-            ? "minimum 3 characters required"
-            : "";
-        break;
-      case "lastName":
-        formErrors.lastName =
-          value.length < 3 ? "minimum 3 characters required" : "";
-        break;
-      case "email":
-        formErrors.email = emailRegex.test(value)
-          ? ""
-          : "Invalid email address";
-        break;
-      case "password":
-        formErrors.password =
-          value.length < 6 ? "minimum 6 characters required" : "";
-        break;
-      default:
-        break;
+    if (this.fname.current.value.length < 3) {
+      toast.error("minimum 3 characters required for firstname");
     }
-    this.setState({ formErrors: formErrors, [name]: value });
+
+    if (this.lname.current.value.length < 3) {
+      toast.error("minimum 3 characters required for lastname");
+    }
+
+    if (!emailRegex.test(this.mail.current.value)) {
+      toast.error("Invalid email address");
+    }
+
+    if (this.password.current.value.length < 6) {
+      toast.error("password should have minimum of 6 characters");
+    }
   };
 
   handleSubmit = (e) => {
-    this.handleChange(e);
-    alert("success")
+    this.handleChange();
     debugger;
     e.preventDefault();
     if (formValid(this.state.formErrors)) {
@@ -73,20 +70,13 @@ export default class Register extends Component {
         email: this.state.email,
         password: this.state.password,
       });
-      //alert(`${this.state.firstName} ${this.state.lastName}  Registered Successfully !!!!`)
-      //   console.log(`
-      //   firstName: ${this.state.firstName},
-      //   lastName: ${this.state.lastName},
-      //   email: ${this.state.email},
-      //   password: ${this.state.password},
-      //    `);
+      this.setState({ success: true });
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
 
   render() {
-    const formErrors = this.state.formErrors;
     return (
       <div className="login">
         {" "}
@@ -95,64 +85,57 @@ export default class Register extends Component {
           <div>
             <label htmlFor="firstName">First Name</label>
             <input
-              className={`login-item ${
-                formErrors.firstName.length > 0 ? "error" : ""
-              }`}
+              className="login-item"
               type="text"
               name="firstName"
               placeholder="your first name "
-              onChange={this.handleChange}
+              ref={this.fname}
             ></input>
-            {formErrors.firstName.length > 0 && (
-              <span className="errorMessage">{formErrors.firstName}</span>
-            )}
           </div>
+
           <div>
             <label htmlFor="lastName">Last Name</label>
             <input
-              className={`login-item ${
-                formErrors.lastName.length > 0 ? "error" : ""
-              }`}
+              className="login-item"
               type="text"
               name="lastName"
               placeholder="your last name"
-              onChange={(e) => this.handleChange(e)}
+              ref={this.lname}
             ></input>
-            {formErrors.lastName.length > 0 && (
-              <span className="errorMessage">{formErrors.lastName}</span>
-            )}
           </div>
           <div>
             <label htmlFor="email">Email id</label>
             <input
-              className={`login-item ${formErrors.email.length > 0 ? "error" : ""}`}
+              className="login-item"
               type="email"
               name="email"
               placeholder="your email id"
-              onChange={(e) => this.handleChange(e)}
+              ref={this.mail}
             ></input>
-            {formErrors.email.length > 0 && <span className="errorMessage">{formErrors.email}</span>}
           </div>
           <div>
-            <label htmlFor="email">password</label>
+            <label htmlFor="password">password</label>
             <input
-              className={`login-item ${
-                formErrors.password.length > 0 ? "error" : ""
-              }`}
+              className="login-item"
               type="password"
               name="password"
               placeholder="type your password"
-              onChange={(e) => this.handleChange(e)}
+              ref={this.password}
             ></input>
-            {formErrors.password.length > 0 && (
-              <span className="errorMessage">{formErrors.password}</span>
-            )}
           </div>
           <div>
             <button type="submit" className="button-primary">
               Create Account
             </button>
           </div>
+          {this.state.success ? (
+            <div className="success">Form successfully registered</div>
+          ) : (
+            <div className="error_message">
+              {" "}
+              Please fill the highlighted fields
+            </div>
+          )}
         </form>
       </div>
     );

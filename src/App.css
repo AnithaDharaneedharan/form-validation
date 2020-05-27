@@ -1,11 +1,8 @@
-
-
 .login {
   /* display: flex; */
   text-align: center;
   align-items: center;
   margin: 30px;
-  
 }
 
 .login-item {
@@ -14,12 +11,22 @@
   margin: 20px;
 }
 
-.button-primary{
+label {
+  width: 240px;
+  display: inline-block;
+  text-align: center;
+}
+
+.button-primary {
   background-color: aqua;
   width: 200px;
-  padding : 10px;
+  padding: 10px;
 }
 
 .error {
   border: 1px solid red;
+}
+
+.error_message {
+  color: red;
 }
