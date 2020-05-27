@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import reactDOM from 'react-dom';
 
 
 export default class Login extends Component {
@@ -10,7 +9,6 @@ export default class Login extends Component {
             username : ''
         };
     }
-
 
     handleNameChange(e) {
         debugger

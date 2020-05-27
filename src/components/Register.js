@@ -39,7 +39,7 @@ export default class Register extends Component {
     };
   }
 
-  handleChange = () => {
+  handleValidation = () => {
     debugger;
 
     if (this.fname.current.value.length < 3) {
@@ -60,7 +60,7 @@ export default class Register extends Component {
   };
 
   handleSubmit = (e) => {
-    this.handleChange();
+    this.handleValidation();
     debugger;
     e.preventDefault();
     if (formValid(this.state.formErrors)) {
