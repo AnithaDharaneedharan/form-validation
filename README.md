@@ -1,1 +1,0 @@
-This project deals with basic form validation 
