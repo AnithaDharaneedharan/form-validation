@@ -19,7 +19,7 @@ export default class Register extends Component {
   fname = React.createRef();
   lname = React.createRef();
   mail = React.createRef();
-  password = React.createRef();
+  passcode = React.createRef();
 
   constructor(props) {
     super(props);
@@ -28,44 +28,54 @@ export default class Register extends Component {
       lastName: "",
       email: "",
       password: "",
-      formErrors: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-      },
+
+      formErrors: "",
+
       success: "",
-      errors: "",
+      error: "",
     };
   }
 
   handleValidation = () => {
+    console.log("enteres handlevalidation");
     debugger;
-   
-    if (this.fname.current.value.length < 3) {
+    this.setState({ formErrors: "" });
 
+    if (this.passcode.current.value.length < 6) {
+      toast.error("password should have minimum of 6 characters");
+      this.setState({
+        formErrors: "minimum 6 characters required for password",
+      });
+      console.log("formerror state of password", this.state.formErrors);
+    }
+
+    if (this.fname.current.value.length < 3) {
       toast.error("minimum 3 characters required for firstname");
-      this.setState({formErrors : "minimum 3 characters required for firstname"})
+      this.setState({
+        formErrors: "minimum 3 characters required for firstname",
+      });
     }
 
     if (this.lname.current.value.length < 3) {
       toast.error("minimum 3 characters required for lastname");
-      this.setState({lastName : "minimum 3 characters required for firstname"})
+      this.setState({
+        formErrors: "minimum 3 characters required for lastname",
+      });
     }
 
     if (!emailRegex.test(this.mail.current.value)) {
       toast.error("Invalid email address");
-      this.setState({email : "minimum 3 characters required for firstname"})
+      this.setState({ formErrors: "minimum 3 characters required for email" });
     }
 
-    if (this.password.current.value.length < 6) {
-      toast.error("password should have minimum of 6 characters");
-      this.setState({password : "minimum 3 characters required for firstname"})
-    }
+    console.log("eof", this.state.formErrors);
   };
 
   handleSubmit = (e) => {
+    this.setState({ formErrors: "" });
+
     this.handleValidation();
+
     debugger;
     e.preventDefault();
     if (formValid(this.state.formErrors)) {
@@ -77,8 +87,10 @@ export default class Register extends Component {
       });
       this.setState({ success: true });
     } else {
+      this.setState({ success: false });
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
+    console.log("success value", this.state.success);
   };
 
   render() {
@@ -125,7 +137,7 @@ export default class Register extends Component {
               type="password"
               name="password"
               placeholder="type your password"
-              ref={this.password}
+              ref={this.passcode}
             ></input>
           </div>
           <div>
@@ -133,13 +145,11 @@ export default class Register extends Component {
               Create Account
             </button>
           </div>
-          {this.state.success ? (
-            <div className="success">Form successfully registered</div>
+          {console.log(this.state.success)}
+          {this.state && this.state.success ? (
+            <div> success </div>
           ) : (
-            <div className="error_message">
-              {" "}
-              Please fill the incomplete fields
-            </div>
+            <div>Fail</div>
           )}
         </form>
       </div>
