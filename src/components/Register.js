@@ -41,21 +41,26 @@ export default class Register extends Component {
 
   handleValidation = () => {
     debugger;
-
+   
     if (this.fname.current.value.length < 3) {
+
       toast.error("minimum 3 characters required for firstname");
+      this.setState({formErrors : "minimum 3 characters required for firstname"})
     }
 
     if (this.lname.current.value.length < 3) {
       toast.error("minimum 3 characters required for lastname");
+      this.setState({lastName : "minimum 3 characters required for firstname"})
     }
 
     if (!emailRegex.test(this.mail.current.value)) {
       toast.error("Invalid email address");
+      this.setState({email : "minimum 3 characters required for firstname"})
     }
 
     if (this.password.current.value.length < 6) {
       toast.error("password should have minimum of 6 characters");
+      this.setState({password : "minimum 3 characters required for firstname"})
     }
   };
 
